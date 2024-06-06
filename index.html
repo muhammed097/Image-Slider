@@ -1,0 +1,50 @@
+<div class="image-slider">
+  <img id="slider-image" src="https://tripmonkey.in/wp-content/uploads/2024/06/New-Project.png" alt="Slider Image">
+</div>
+
+<style>
+.image-slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%; 
+  overflow: hidden;
+}
+
+.image-slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var images = [
+    "https://tripmonkey.in/wp-content/uploads/2024/04/6447c4c4355ca04f18dd4795_OG-image.jpg.png",
+    "https://tripmonkey.in/wp-content/uploads/2024/06/New-Project-1.png",
+  ];
+
+  var currentIndex = 0;
+  var sliderImage = document.getElementById('slider-image');
+  var intervalId;
+
+  function changeImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    sliderImage.src = images[currentIndex];
+  }
+
+  function startSlider() {
+    intervalId = setInterval(changeImage, 2000);
+  }
+
+  function stopSlider() {
+    clearInterval(intervalId);
+    currentIndex = 0;
+    sliderImage.src = images[currentIndex];
+  }
+
+  sliderImage.addEventListener('mouseenter', stopSlider);
+  sliderImage.addEventListener('mouseleave', startSlider);
+  startSlider();
+});
+</script>
